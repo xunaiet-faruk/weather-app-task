@@ -1,4 +1,5 @@
 <script lang="ts">
+    import "./Home.css";
     const api: { key: string; base: string } = {
         key: "291cecb64261d7788117b97270bf97e8",
         base: "https://api.openweathermap.org/data/2.5/",
@@ -50,6 +51,7 @@
                 const uvData: any = await uvResponse.json();
                 weather.uvi = uvData.value;
             }
+       search =""
         }
     };
 </script>
@@ -60,30 +62,35 @@
     <div
         class="border-2 bg-gradient-to-r from-cyan-700 to-blue-500 border-sky-600 backdrop-blur-3xl w-[450px] rounded-lg shadow-2xl h-[580px]"
     >
-        <div class="m-3 my-6 flex justify-center items-center">
-            <form>
-                <div class="flex justify-center items-center">
-                    <div class="input-container">
-                        <input
-                            placeholder="Enter city/town or ZIP Code..."
-                            bind:value={search}
-                            class="input p-3 w-[350px] text-white rounded-xl bg-gradient-to-r from-cyan-300 to-blue-500 border-sky-600"
-                            name="text"
-                            type="text"
-                        />
-                    </div>
-                    <button
-                        class="px-3 py-3 hover:scale-105 transition bg-gradient-to-l from-cyan-300 to-blue-500 border-sky-600 text-white rounded-lg"
-                        on:click|preventDefault={searchPressed}
-                        ><img
-                            class="w-6 text-white"
-                            src="https://i.ibb.co/p282Mcr/image-removebg-preview-60.png"
-                            alt="search"
-                        /></button
-                    >
-                </div>
-            </form>
+        <div class="messageBox ">
+            <input
+                class="py-5 font-semibold text-xl"
+                placeholder="Enter city/town or zip code "
+                bind:value={search}
+                type="text"
+                id="messageInput"
+            />
+            <button class="" on:click|preventDefault={searchPressed} id="sendButton">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 664 663"
+                >
+                    <path
+                        fill="none"
+                        d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+                    ></path>
+                    <path
+                        stroke-linejoin="round"
+                        stroke-linecap="round"
+                        stroke-width="33.67"
+                        stroke="#6c6c6c"
+                        d="M646.293 331.888L17.7538 17.6187L155.245 331.888M646.293 331.888L17.753 646.157L155.245 331.888M646.293 331.888L318.735 330.228L155.245 331.888"
+                    ></path>
+                </svg>
+            </button>
         </div>
+
         {#if weather.main !== undefined}
             <div class=" flex justify-center my-3 items-center">
                 <img
